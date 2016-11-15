@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LinkedIn</string>
+
+    <!--Login-->
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button_text">Sign in</string>
+    <string name="forgot_password_text">Forgot your password?</string>
+    <string name="insert_email_error_message">Please insert your email</string>
+    <string name="insert_password_error_message">Please insert your password</string>
+    <!--Login-->
+
+</resources>

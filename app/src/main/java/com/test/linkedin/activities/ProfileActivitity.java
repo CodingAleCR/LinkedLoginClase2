@@ -66,7 +66,7 @@ public class ProfileActivitity extends BaseActivity{
 
             skills.setText(user.getSkills());
 
-            Glide.with(this).load(user.getImageURL()).into(profileImage);
+            Glide.with(this).load(user.getImageURL()).centerCrop().into(profileImage);
 
         }
     }

@@ -15,6 +15,7 @@ import com.test.linkedin.utils.AlertUtils;
 import com.test.linkedin.views.LoginView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements LoginView{
@@ -31,7 +32,11 @@ public class LoginActivity extends BaseActivity implements LoginView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ButterKnife.bind(this);
+
         presenter = new LoginPresenter(this);
+
+
 
     }
 
@@ -87,7 +92,10 @@ public class LoginActivity extends BaseActivity implements LoginView{
     @Override
     public void displayLoginSuccess(User user) {
 
-        Intent detailIntent =  new Intent(this, LinkedInProfileDetail.class);
+        Intent detailIntent =  new Intent(this, ProfileActivitity.class);
+
+        detailIntent.putExtra("user",user);
+
         finish();
         startActivity(detailIntent);
 

@@ -1,19 +1,28 @@
 package com.test.linkedin.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.hannesdorfmann.parcelableplease.annotation.ParcelablePlease;
+
 /**
  * Created by chris on 1/19/17.
  */
 
-public class User {
+@ParcelablePlease
+public class User implements Parcelable{
 
-    private String firstName;
-    private String lastName;
-    private String country;
-    private String profession;
-    private String interest;
-    private String email;
-    private String skills;
-    private String imageURL;
+    protected String firstName;
+    protected String lastName;
+    protected String country;
+    protected String profession;
+    protected String interest;
+    protected String email;
+    protected String skills;
+    protected String imageURL;
+
+    public User() {
+    }
 
     public User(String firstName, String lastName, String country, String profession, String interest, String email, String skills, String imageURL) {
         this.firstName = firstName;
@@ -138,4 +147,28 @@ public class User {
                 ", imageURL='" + imageURL + '\'' +
                 '}';
     }
+
+
+    @Override public int describeContents() {
+        return 0;
+    }
+
+    @Override public void writeToParcel(Parcel dest, int flags) {
+        UserParcelablePlease.writeToParcel(this, dest, flags);
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        public User createFromParcel(Parcel source) {
+            User target = new User();
+            UserParcelablePlease.readFromParcel(target, source);
+            return target;
+        }
+
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+
+
 }

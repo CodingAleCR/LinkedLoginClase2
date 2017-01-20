@@ -56,14 +56,6 @@
                     android:text="@string/company"
                     style="@style/Base.TextAppearance.AppCompat.Caption"/>
 
-                <TextView
-                    android:id="@+id/fieldText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/field"
-                    style="@style/Base.TextAppearance.AppCompat.Caption"/>
-
             </LinearLayout>
 
         </LinearLayout>
@@ -102,8 +94,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@color/gray">
 
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textViewSkills"
+            android:layout_weight="1"/>
     </LinearLayout>
 
 </LinearLayout>

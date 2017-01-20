@@ -1,49 +1,59 @@
 package com.test.linkedin.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.test.linkedin.R;
+import com.test.linkedin.common.BaseActivity;
+import com.test.linkedin.common.BasePresenter;
+import com.test.linkedin.model.User;
+import com.test.linkedin.presenters.LoginPresenter;
 import com.test.linkedin.utils.AlertUtils;
+import com.test.linkedin.views.LoginView;
 
-public class LoginActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.OnClick;
 
-    private EditText _emailEditText;
-    private EditText _passwordEditText;
+public class LoginActivity extends BaseActivity implements LoginView{
+
+    @BindView(R.id.emailEditText)
+    EditText _emailEditText;
+    @BindView(R.id.passwordEditText)
+    EditText _passwordEditText;
+
+    LoginPresenter presenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        setupUI();
-    }
 
-    private void setupUI(){
-
-        _emailEditText = (EditText)findViewById(R.id.emailEditText);
-        _passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+        presenter = new LoginPresenter(this);
 
     }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_login;
+    }
+
+    @Nullable
+    @Override
+    protected BasePresenter getPresenter() {
+        return presenter;
+    }
+
+    @OnClick(R.id.loginButton)
     public void onLoginClicked(View view){
 
         //Validar que todo este lleno
         if(isValid())
         {
-            showDetailActivity();
+            presenter.loginUser(_emailEditText.getText().toString(), _passwordEditText.getText().toString());
         }
-    }
-
-    private void showDetailActivity(){
-
-        Intent detailIntent =  new Intent(this, LinkedInProfileDetail.class);
-        finish();
-        startActivity(detailIntent);
     }
 
     /**
@@ -67,4 +77,19 @@ public class LoginActivity extends AppCompatActivity {
         return returnValue;
     }
 
+    @Override
+    public void displayError() {
+
+        AlertUtils.showToaster(this, "Incorrect email or password");
+
+    }
+
+    @Override
+    public void displayLoginSuccess(User user) {
+
+        Intent detailIntent =  new Intent(this, LinkedInProfileDetail.class);
+        finish();
+        startActivity(detailIntent);
+
+    }
 }

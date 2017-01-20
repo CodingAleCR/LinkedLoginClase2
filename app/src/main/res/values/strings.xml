@@ -10,4 +10,11 @@
     <string name="insert_password_error_message">Please insert your password</string>
     <!--Login-->
 
+    <!--Dummy User-->
+    <string name="name">Name</string>
+    <string name="job_title">Job title</string>
+    <string name="company">Company</string>
+    <string name="field">Field</string>
+    <!--Dummy User-->
+
 </resources>
